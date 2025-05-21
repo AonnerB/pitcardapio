@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>CARDÁPIO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <img src="https://www.rw-designer.com/cursor-view/74646.png" alt="Cursor Pizza" class="cursor-pizza"
+        id="pizzaCursor">
+
+    <header>
+        <div class="left-space"></div> <!-- espaço vazio para equilibrar -->
+        <h1><a href="https://www.seusite.com" target="_blank" rel="noopener noreferrer">PIT MANIA</a></h1>
+        <div class="icons">
+            <button id="cartBtn" class="icon-btn" aria-label="Abrir carrinho">
+                🛒
+                <span id="cartCount" class="cart-count">0</span>
+            </button>
+            <button id="profileBtn" class="icon-btn" aria-label="Abrir perfil">👤</button>
+        </div>
+    </header>
+
+    <!-- Sidebar carrinho -->
+    <div id="cartSidebar" class="sidebar">
+        <h2>Seu Carrinho</h2>
+        <p>Aqui seus pedidos aparecerão...</p>
+        <div id="cartItems"></div> <!-- aqui os itens serão inseridos -->
+
+        <button class="finalize-btn">Finalizar Pedido</button>
+    </div>
+
+    <!-- Modal perfil -->
+    <div id="profileModal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <span id="closeModal" class="close-btn" aria-label="Fechar formulário">&times;</span>
+            <h2 id="modalTitle">Cadastro de Perfil</h2>
+            <form id="profileForm">
+                <label for="phone" class="required">Telefone:
+                    <span class="required-star" title="Campo obrigatório">*</span>
+                </label>
+                <input type="tel" id="phone" name="phone" placeholder="(99) 99999-9999" required
+                    pattern="^\(?\d{2}\)?[\s-]?\d{4,5}-\d{4}$" title="Digite um número de telefone válido com DDD" />
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome" required />
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <h1>Nosso Menu</h1>
+
+        <!-- PIZZAS -->
+        <div class="section">
+            <h2>🍕 Pizzas</h2>
+            <div class="menu-grid" id="pizzas">
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=Margherita" alt="">
+                    <h3>Pizza Margherita</h3>
+                    <p>Molho de tomate, mussarela e manjericão.</p>
+                    <div class="price">R$ 34,90</div>
+                    <button onclick="addToCart('Pizza Margherita')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=Calabresa" alt="">
+                    <h3>Pizza Calabresa</h3>
+                    <p>Calabresa, cebola e mussarela.</p>
+                    <div class="price">R$ 36,90</div>
+                    <button onclick="addToCart('Pizza Calabresa')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=4+Queijos" alt="">
+                    <h3>Pizza 4 Queijos</h3>
+                    <p>Mussarela, parmesão, provolone e gorgonzola.</p>
+                    <div class="price">R$ 38,90</div>
+                    <button onclick="addToCart('Pizza 4 Queijos')">Adicionar ao Carrinho</button>
+                </div>
+
+                <!-- ITENS OCULTOS -->
+                <div class="menu-item hidden pizza-extra">
+                    <img src="https://superpizzapan.com.br/wp-content/uploads/2024/04/portuguesa.png" alt="">
+                    <h3>Pizza Portuguesa</h3>
+                    <p>Presunto, ovos, cebola, azeitona e mussarela.</p>
+                    <div class="price">R$ 39,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item hidden pizza-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Frango+Catupiry" alt="">
+                    <h3>Pizza Frango com Catupiry</h3>
+                    <p>Frango desfiado com catupiry cremoso.</p>
+                    <div class="price">R$ 40,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item hidden pizza-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Frango+Catupiry" alt="">
+                    <h3>Pizza Frango com Catupiry</h3>
+                    <p>Frango desfiado com catupiry cremoso.</p>
+                    <div class="price">R$ 40,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="ver-mais">
+                <button onclick="toggleItems('pizza-extra', this)">Ver mais</button>
+            </div>
+        </div>
+
+        <!-- SANDUÍCHES -->
+        <div class="section">
+            <h2>🥪 Sanduíches</h2>
+            <div class="menu-grid" id="sanduiches">
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=X-Burguer" alt="">
+                    <h3>X-Burguer</h3>
+                    <p>Pão, hambúrguer, queijo, alface e tomate.</p>
+                    <div class="price">R$ 29,90</div>
+                    <button onclick="addToCart('X-Burguer')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=X-Bacon" alt="">
+                    <h3>X-Bacon</h3>
+                    <p>Pão, hambúrguer, queijo e bacon crocante.</p>
+                    <div class="price">R$ 32,90</div>
+                    <button onclick="addToCart('X-Bacon')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=X-Tudo" alt="">
+                    <h3>X-Tudo</h3>
+                    <p>Com tudo que tem direito!</p>
+                    <div class="price">R$ 35,00</div>
+                    <button onclick="addToCart('X-Tudo')">Adicionar ao Carrinho</button>
+                </div>
+
+                <!-- ITENS OCULTOS -->
+                <div class="menu-item hidden sanduiche-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Veggie" alt="">
+                    <h3>Sanduíche Veggie</h3>
+                    <p>Hambúrguer vegetal com legumes grelhados.</p>
+                    <div class="price">R$ 28,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+                <div class="menu-item hidden sanduiche-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Veggie" alt="">
+                    <h3>Sanduíche Veggie</h3>
+                    <p>Hambúrguer vegetal com legumes grelhados.</p>
+                    <div class="price">R$ 28,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+                <div class="menu-item hidden sanduiche-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Veggie" alt="">
+                    <h3>Sanduíche Veggie</h3>
+                    <p>Hambúrguer vegetal com legumes grelhados.</p>
+                    <div class="price">R$ 28,90</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+            </div>
+            <div class="ver-mais">
+                <button onclick="toggleItems('sanduiche-extra', this)">Ver mais</button>
+            </div>
+        </div>
+
+        <!-- BEBIDAS -->
+        <div class="section">
+            <h2>🥤 Bebidas</h2>
+            <div class="menu-grid" id="bebidas">
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=Coca-Cola" alt="">
+                    <h3>Coca-Cola</h3>
+                    <p>Lata 350ml bem gelada.</p>
+                    <div class="price">R$ 5,00</div>
+                    <button onclick="addToCart('Coca-Cola')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=Guaraná" alt="">
+                    <h3>Guaraná</h3>
+                    <p>Refresco nacional e delicioso.</p>
+                    <div class="price">R$ 5,00</div>
+                    <button onclick="addToCart('Guaraná')">Adicionar ao Carrinho</button>
+                </div>
+                <div class="menu-item">
+                    <img src="https://via.placeholder.com/280x200?text=Suco+Laranja" alt="">
+                    <h3>Suco de Laranja</h3>
+                    <p>Natural e sem conservantes.</p>
+                    <div class="price">R$ 5,00</div>
+                    <button onclick="addToCart('Suco de Laranja')">Adicionar ao Carrinho</button>
+                </div>
+
+                <!-- ITENS OCULTOS -->
+                <div class="menu-item hidden bebida-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Água" alt="">
+                    <h3>Água Mineral</h3>
+                    <p>Garrafa 500ml sem gás.</p>
+                    <div class="price">R$ 3,00</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+                <div class="menu-item hidden bebida-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Água" alt="">
+                    <h3>Água Mineral</h3>
+                    <p>Garrafa 500ml sem gás.</p>
+                    <div class="price">R$ 3,00</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+                <div class="menu-item hidden bebida-extra">
+                    <img src="https://via.placeholder.com/280x200?text=Água" alt="">
+                    <h3>Água Mineral</h3>
+                    <p>Garrafa 500ml sem gás.</p>
+                    <div class="price">R$ 3,00</div>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+
+                </div>
+            </div>
+            <div class="ver-mais">
+                <button onclick="toggleItems('bebida-extra', this)">Ver mais</button>
+            </div>
+        </div>
+    </main>
+
+    <a id="whatsappBtn" class="floating-btn">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    <div id="whatsappPopup" class="whatsapp-popup">Dúvidas? Entre em contato!</div>
+
+    <a id="scrollTopBtn" class="floating-btn">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+</body>
+
+
+<script src="/js/script.js"></script>
+
+</html>
