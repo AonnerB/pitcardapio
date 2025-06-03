@@ -107,12 +107,12 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 // Botão WhatsApp
-const whatsappBtn = document.getElementById('whatsappBtn');
-whatsappBtn.addEventListener('click', () => {
-  const message = encodeURIComponent("Olá! Vi o cardápio da Pit Mania e gostaria de pedir uma pizza grande de calabresa com borda recheada. Está disponível?");
-  const phoneNumber = "62993454968"; // Substitua pelo seu número no formato internacional
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-});
+//const whatsappBtn = document.getElementById('whatsappBtn');
+//whatsappBtn.addEventListener('click', () => {
+//const message = encodeURIComponent("Olá! Vi o cardápio da Pit Mania e gostaria de pedir uma pizza grande de calabresa com borda recheada. Está disponível?");
+//const phoneNumber = "62993454968"; // Substitua pelo seu número no formato internacional
+//window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+//});
 
 
 function addToCart(productName) {
